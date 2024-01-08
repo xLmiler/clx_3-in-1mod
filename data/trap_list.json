@@ -1,0 +1,912 @@
+{
+	"1": {
+		"TrapName": "媚毒喷雾",
+		"TrapMemo": "含有大量催淫成分的气体，会使发情值上升。",
+		"DamagePoint": "50",
+		"TrapType": "Touch",
+		"DamageType": "Estrus"
+	},
+	"2": {
+		"TrapName": "触手爱抚",
+		"TrapMemo": "沾满粘液的触手玩弄着胸部。",
+		"DamagePoint": "20",
+		"TrapType": "Touch",
+		"DamageType": "Extasy"
+	},
+	"3": {
+		"TrapName": "白浊液喷射",
+		"TrapMemo": "向身体喷射白浊液。",
+		"DamagePoint": "1",
+		"TrapType": "Touch",
+		"DamageType": "Semen"
+	},
+	"4": {
+		"TrapName": "能量吸收",
+		"TrapMemo": "能够吸收HP的可疑的球体。",
+		"DamagePoint": "50",
+		"TrapType": "Touch",
+		"DamageType": "HP"
+	},
+	"5": {
+		"TrapName": "转移门",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"6": {
+		"TrapName": "镭射激光",
+		"TrapMemo": "能够吸收HP的可疑的光线。",
+		"DamagePoint": "50",
+		"TrapType": "Touch",
+		"DamageType": "HP"
+	},
+	"7": {
+		"TrapName": "毒沼泽",
+		"TrapMemo": "每次移动都会受到侵蚀，对HP造成伤害。",
+		"DamagePoint": "5",
+		"TrapType": "Field",
+		"DamageType": "HP"
+	},
+	"8": {
+		"TrapName": "魔蚀的毒沼泽",
+		"TrapMemo": "每次移动都会被夺走魔力，消耗MP。",
+		"DamagePoint": "5",
+		"TrapType": "Field",
+		"DamageType": "MP"
+	},
+	"9": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"10": {
+		"TrapName": "喷射",
+		"TrapMemo": "向身体喷射白浊液。",
+		"DamagePoint": "1",
+		"TrapType": "Floor",
+		"DamageType": "Semen"
+	},
+	"11": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"12": {
+		"TrapName": "媚药沼泽",
+		"TrapMemo": "每次移动毒都会渗透到身体里。",
+		"DamagePoint": "1",
+		"TrapType": "Field",
+		"DamageType": "Estrus"
+	},
+	"13": {
+		"TrapName": "精液沼泽",
+		"TrapMemo": "每次移动都会有大量的精液弄脏身体。",
+		"DamagePoint": "1",
+		"TrapType": "Field",
+		"DamageType": "Semen"
+	},
+	"14": {
+		"TrapName": "地面之手",
+		"TrapMemo": "被从地面上伸出来的手拘束然后玩弄着。",
+		"DamagePoint": "15",
+		"TrapType": "Floor",
+		"DamageType": "Extasy"
+	},
+	"15": {
+		"TrapName": "墙之手",
+		"TrapMemo": "被从墙上伸出来的无数只手玩弄着全身。",
+		"DamagePoint": "20",
+		"TrapType": "Touch",
+		"DamageType": "Extasy"
+	},
+	"16": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"17": {
+		"TrapName": "市民之手",
+		"TrapMemo": "从人群中伸出来的下流的手。",
+		"DamagePoint": "20",
+		"TrapType": "Touch",
+		"DamageType": "Extasy"
+	},
+	"18": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"19": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"20": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"21": {
+		"TrapName": "触手沼泽",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "Field",
+		"DamageType": ""
+	},
+	"22": {
+		"TrapName": "触手之壁",
+		"TrapMemo": "被从墙上突然长出来的触手缠住，责弄着全身。",
+		"DamagePoint": "10",
+		"TrapType": "Touch",
+		"DamageType": "Extasy"
+	},
+	"23": {
+		"TrapName": "地之触手",
+		"TrapMemo": "从地板上伸出的触手刺激着秘处。",
+		"DamagePoint": "10",
+		"TrapType": "Floor",
+		"DamageType": "Extasy"
+	},
+	"24": {
+		"TrapName": "地之触手",
+		"TrapMemo": "从地板上伸出的触手刺激着后穴。",
+		"DamagePoint": "10",
+		"TrapType": "Floor",
+		"DamageType": "Extasy"
+	},
+	"25": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"26": {
+		"TrapName": "触手拘束",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"27": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"28": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"29": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"30": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"31": {
+		"TrapName": "触手责弄",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"32": {
+		"TrapName": "刷子触手责弄",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"33": {
+		"TrapName": "吸盘触手责弄",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"34": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"35": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"36": {
+		"TrapName": "触手寄生",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"37": {
+		"TrapName": "触手服",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"38": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"39": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"40": {
+		"TrapName": "催眠装置",
+		"TrapMemo": "妖力侵蚀着心灵……。",
+		"DamagePoint": "10",
+		"TrapType": "Touch",
+		"DamageType": "Hypnosis"
+	},
+	"41": {
+		"TrapName": "催眠映像",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"42": {
+		"TrapName": "催眠强奸",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"43": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"44": {
+		"TrapName": "壁口交",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"45": {
+		"TrapName": "胸注射",
+		"TrapMemo": "往胸里注入了可疑的液体。",
+		"DamagePoint": "15",
+		"TrapType": "Touch",
+		"DamageType": "Extasy"
+	},
+	"46": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"47": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"48": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"49": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"50": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"51": {
+		"TrapName": "酸性粘液",
+		"TrapMemo": "对服装的耐久造成损伤。",
+		"DamagePoint": "25",
+		"TrapType": "Fall",
+		"DamageType": "Cloth"
+	},
+	"52": {
+		"TrapName": "精液史莱姆",
+		"TrapMemo": "大量的白浊液附着在身体上。",
+		"DamagePoint": "2",
+		"TrapType": "Fall",
+		"DamageType": "Semen"
+	},
+	"53": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"54": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"55": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"56": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"57": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"58": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"59": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"60": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"61": {
+		"TrapName": "ウィップ",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"62": {
+		"TrapName": "水车",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"63": {
+		"TrapName": "按摩机",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"64": {
+		"TrapName": "注射",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"65": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"66": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"67": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"68": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"69": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"70": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"71": {
+		"TrapName": "锁束缚",
+		"TrapMemo": "由于锁链不能动弹。",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"72": {
+		"TrapName": "壁尻",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"73": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"74": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"75": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"76": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"77": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"78": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"79": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"80": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"81": {
+		"TrapName": "瘴气弹",
+		"TrapMemo": "HP受到伤害，瘴气值上升。",
+		"DamagePoint": "50",
+		"TrapType": "Touch",
+		"DamageType": "Miasma"
+	},
+	"82": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"83": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"84": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"85": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"86": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"87": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"88": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"89": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"90": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"91": {
+		"TrapName": "羞耻照相机",
+		"TrapMemo": "捕捉害羞的样子进行拍摄。",
+		"DamagePoint": "0",
+		"TrapType": "Touch",
+		"DamageType": ""
+	},
+	"92": {
+		"TrapName": "透明领域",
+		"TrapMemo": "服装会变得透明。",
+		"DamagePoint": "0",
+		"TrapType": "Floor",
+		"DamageType": "State"
+	},
+	"93": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"94": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"95": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"96": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"97": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"98": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"99": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"100": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"101": {
+		"TrapName": "爆裂魔法",
+		"TrapMemo": "受到炎属性伤害。",
+		"DamagePoint": "100",
+		"TrapType": "Touch",
+		"DamageType": "HP"
+	},
+	"102": {
+		"TrapName": "盆",
+		"TrapMemo": "受到固定伤害，有点烦躁。",
+		"DamagePoint": "10",
+		"TrapType": "Fall",
+		"DamageType": "HP"
+	},
+	"103": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"104": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"105": {
+		"TrapName": "飞针",
+		"TrapMemo": "从地板射出的针造成物理属性的伤害。",
+		"DamagePoint": "50",
+		"TrapType": "Floor",
+		"DamageType": "HP"
+	},
+	"106": {
+		"TrapName": "毒飞针",
+		"TrapMemo": "从地板射出的针造成毒和物理属性的伤害。",
+		"DamagePoint": "100",
+		"TrapType": "Floor",
+		"DamageType": "HP"
+	},
+	"107": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"108": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"109": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"110": {
+		"TrapName": "电击",
+		"TrapMemo": "受到电击属性伤害。",
+		"DamagePoint": "100",
+		"TrapType": "Touch",
+		"DamageType": "HP"
+	},
+	"111": {
+		"TrapName": "快乐电流",
+		"TrapMemo": "快乐的脉冲灼烧神经，强制性地提高敏感值。",
+		"DamagePoint": "200",
+		"TrapType": "Touch",
+		"DamageType": "Extasy"
+	},
+	"112": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"113": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"114": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"115": {
+		"TrapName": "转移",
+		"TrapMemo": "强制移动到某个地方。",
+		"DamagePoint": "0",
+		"TrapType": "Floor",
+		"DamageType": "Studio"
+	},
+	"116": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"117": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"118": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"119": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"120": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"121": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"122": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"123": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"124": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"125": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"126": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"127": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"128": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"129": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	},
+	"130": {
+		"TrapName": "",
+		"TrapMemo": "",
+		"DamagePoint": "",
+		"TrapType": "",
+		"DamageType": ""
+	}
+}
