@@ -784,7 +784,8 @@ if(CLOTHTAG == "Change" && CUTINALTFLAG >= 1){//変身中は素体ナンバー+1
 if(CLOTHTAG == "DarkChange" && CUTINALTFLAG >= 1){
   CUTINFILENUM += 2
 };
-if(CLOTHTAG == "EvilChange" && CUTINALTFLAG >= 1 && HairFlag !== 0){
+//如果是奈落的堕灵魔衣
+if(CLOTHTAG == "EvilChange" && CUTINALTFLAG >= 1){
   CUTINFILENUM += 2
   CUTINFILENUM = CUTINFILENUM + "b"
 };
@@ -800,11 +801,11 @@ if(CUTINFILENUM >= 10){
     FILENAME2 = "actor04_cutin_" + CUTINBASENUM + "_000" + CUTINFILENUM
 }
 //如果黑皮但是魔人皮肤
-if($gameSwitches.value(3001) == true && CLOTHTAG !== "EvilChange"){
-  var bitmap = ImageManager.loadPicture(FILENAME2);
-}
-else{
+if($gameSwitches.value(3001) == true && CLOTHTAG === "EvilChange"){
   var bitmap = ImageManager.loadPicture(FILENAME);
+}
+else if ($gameSwitches.value(3001) == true && CLOTHTAG !== "EvilChange"){
+  var bitmap = ImageManager.loadPicture(FILENAME2);
 }
 var s = new Sprite(bitmap);
 SceneManager._scene.total.addChild(s);  
@@ -835,6 +836,7 @@ if(ClitFlag >= 1 && $gameActors._data[1]._equips[14]._itemId > 5){//阴蒂环
 	SceneManager._scene.total.addChild(s);  
 	SceneManager._scene.total.Cutin1Expand2 = s;
 }
+
 if(!Nipple && RingFlag >= 1 && $gameActors._data[1]._equips[10]._itemId > 5){//物件乳环
 	FILENAME = 'nipple/' + CUTINBASENUM + "_" + eval($dataArmors[$gameActors._data[1]._equips[10]._itemId].meta.PID);
   if(DifID == 'continuous') FILENAME += 'b';
@@ -871,6 +873,7 @@ if(EroFlag >= 1 && $gameVariables.value(1030) > 45 && ConfigManager.Erode){//侵
 if(HairFlag >= 1){//头发换色
 	if(CUTINFILENUM >= 10) FILENAME = 'hair/' + CUTINBASENUM + "_" + CUTINFILENUM;
     else FILENAME = 'hair/' + CUTINBASENUM + "_" + CUTINFILENUM;
+  if(CLOTHTAG === "EvilChange")FILENAME = "actor01_cutin_" + CUTINBASENUM + "_000" + CUTINFILENUM;
 	var bitmap = ImageManager.loadPicture(FILENAME);
 	var s = new Sprite(bitmap);
 	SceneManager._scene.total.addChild(s);  

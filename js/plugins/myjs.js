@@ -6,17 +6,17 @@
         //卖淫弹幕显示 (移植，原插件callps)
         if (command === 'CallProstitute') {
             var MessagePT = args[1]
-            var arg_value = Number(args[0].match(/\\v\[(\d+)\]/))
+            if (args[0].match(/\\v/)) {
+                array = args[0].match(/[0-9]+\.?[0-9]*/g);
+            }
+            var arg_value = array[0];
             var PSID = 0
             if (arg_value) {
               PSID = $gameVariables.value(arg_value);
             }          
             var PSMS = $psmessage[PSID][MessagePT]
-              
-              if(PSMS == "なし"){} else
-              {
-                TickerManager.show(`\\i[892]\\C[27]${PSMS}`)
-              }
+            console.log(PSMS,PSID,MessagePT,arg_value,args[0])
+            if(PSMS !== "なし") TickerManager.show(`\\i[892]\\C[27]${PSMS}`);
         } 
         //停顿等待 (移植，原插件callwait)
         if (command === 'CallWait') {
@@ -206,4 +206,21 @@
             }
         }
     }
+    CM_BattleManager_initMembers = BattleManager.initMembers;
+    BattleManager.initMembers = function() {
+        CM_BattleManager_initMembers.call(this);
+        //如果装备自慰棒获得拔棒技能
+        if ($gameActors.actor(1)._equips[14]._itemId === 321 && !$gameActors.actor(1).hasSkill(1161) ) 
+        {
+            $gameActors.actor(1).learnSkill(1161)
+        }
+    };
+
+    CM_BattleManager_updateBattleEnd = BattleManager.updateBattleEnd ;
+    BattleManager.updateBattleEnd = function() {
+        CM_BattleManager_updateBattleEnd.call(this);
+        if ($gameActors.actor(1).hasSkill(1161) ) $gameActors.actor(1).forgetSkill(1161);
+        $gameVariables._data[3783] = 0;
+    };
 })();
+

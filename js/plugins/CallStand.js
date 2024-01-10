@@ -57,8 +57,8 @@
 			let FileName = 0 //立绘文件名
 			let Dif1PicFileName = 0;// 显示的立绘文件名1
 			let Dif2PicFileName = 0;// 显示的立绘文件名2
-			//通用模具编号
-			let StandAltFlag = $gameSwitches.value(131) ? 1 : 0
+			//通用编号
+			let StandAltFlag = $gameSwitches.value(131) ? 1 : 0 //是否变身状态
 			let ClothUpdate = 0
 
 			//获取身上装备的id编号
@@ -132,6 +132,7 @@
 			$gameVariables._data[742] = $gameVariables.value(722)
 			let blackBody = $gameSwitches.value(3001)//日晒皮肤开关
 			let demonBody = $gameSwitches.value(98)//魔人皮肤开关
+			let masturbation_stick = $gameVariables.value(3783)//自慰棒切换开关
 
 
 			//这里开始是游戏的立绘处理
@@ -284,7 +285,7 @@
 				ClothPicFileNum = $dataArmors[StandEqNum].meta.PID;
 				//淫触魔衣切换
 				if (StandEqNum == 70 && $gameSwitches.value(1838)) ClothPicFileNum += 'b';
-
+				if (StandEqNum == 314 && StandAltFlag < 1) ClothPicFileNum += 'b';
 				//乳牛服装切换
 				if (StandEqNum == 77 && $CM_runiu < 3) {
 					switch ($CM_runiu) {
@@ -310,6 +311,7 @@
 						ClothPicFileNum += 'e';
 					}
 				}
+
 				if (StandAltFlag < 1 && $dataArmors[StandEqNum].meta.AltDifference && $dataArmors[StandEqNum].meta.AltDifference[StandPoseID - 1] > 0) ClothPicFileNum += 'b';
 			}
 			else {
@@ -412,6 +414,7 @@
 					if ($dataWeapons[weaponId].meta.feat) {
 						if (user.isStateAffected(392) || window.weaponEffect) weaponIndex += 'b';
 					}
+					if(masturbation_stick === 1) weaponIndex =56//自慰棒拟态
 				}
 			}
 			//身体处理
@@ -934,10 +937,10 @@
 			else if ($gameVariables.value(1020) >= 1) { FaceId = ShameUnhappy }//ぶっかけ
 			else if (user.isStateAffected(28)) { FaceId = Shame }//羞恥
 			else if ($gameParty.inBattle()) {
-				if ($gameSwitches.value(38)) { FaceId = Joy }//戦闘終了時
-				else if ($gameSwitches.value(170)) { FaceId = Damage }//ダメージ
+				if ($gameSwitches.value(38)) { FaceId = Joy }//战斗结束
+				else if ($gameSwitches.value(170)) { FaceId = Damage }//战斗受伤
 				else if (user.isStateAffected(410)) { FaceId = Hyp }
-				else { FaceId = Battle }//戦闘中
+				else { FaceId = Battle }//战斗开始
 			}//暫定
 			else if (user.isStateAffected(220)) { FaceId = Damage }//感情受伤
 			else if (user.isStateAffected(219)) { FaceId = Jito }//感情じとー
