@@ -807,6 +807,10 @@ if($gameSwitches.value(3001) == true && CLOTHTAG === "EvilChange"){
 else if ($gameSwitches.value(3001) == true && CLOTHTAG !== "EvilChange"){
   var bitmap = ImageManager.loadPicture(FILENAME2);
 }
+else
+{
+  var bitmap = ImageManager.loadPicture(FILENAME);
+}
 var s = new Sprite(bitmap);
 SceneManager._scene.total.addChild(s);  
 SceneManager._scene.total.Cutin1Base = s;
