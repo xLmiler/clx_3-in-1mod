@@ -163,6 +163,12 @@ Game_Actor.prototype.hasSword = function() {
 };
 
 BattleManager.canEscape = function() {
+	if(this._canEscape && $gameActors.actor(1)._tp >= 10 && 
+	  ($gameActors.actor(1)._equips[14]._itemId === 321 || $gameActors.actor(1)._equips[0]._itemId === 252))
+	{
+		TickerManager.show(`\\i[892]\\C[27]不可以逃跑哦~`);
+		return false
+	}
     return this._canEscape && $gameActors.actor(1)._tp >= 10;
 };
 

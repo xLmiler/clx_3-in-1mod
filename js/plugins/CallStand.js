@@ -414,7 +414,6 @@
 					if ($dataWeapons[weaponId].meta.feat) {
 						if (user.isStateAffected(392) || window.weaponEffect) weaponIndex += 'b';
 					}
-					// if(masturbation_stick === 1) weaponIndex =56//自慰棒拟态
 				}
 			}
 			//身体处理

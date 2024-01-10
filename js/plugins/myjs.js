@@ -81,7 +81,7 @@
             isNaN(args[1]) ? armorId = $CM_value.get(match[1].toString()) : armorId = parseInt(args[1]);
             if (armorId === 0) {
                 //脱去
-                const prevArmorId = actor._equips[armorTypeId] ? actor._equips[armorTypeId]._itemId : 0;
+                const prevArmorId = actor._equips[armorTypeId] ? actor._equips[armorTypeId]._itemId : 0; //装备的物品id
                 if (prevArmorId !== 0) {
                     $gameParty.gainItem($dataArmors[prevArmorId], 1);
                 }
@@ -91,19 +91,28 @@
             }
             else {
                 //穿上
-                if (!$gameParty.hasItem($dataArmors[armorId])) {
+                if (armorTypeId !== 0 && !$gameParty.hasItem($dataArmors[armorId]) ) {
                     console.error('护甲没有找到:', armorId);
                     return;
                 }
+                else if (armorTypeId === 0 && !$gameParty.hasItem($dataWeapons[armorId]) ){
+                    console.error('武器没有找到:', armorId);
+                    return;
+                }
                 const prevArmorId = actor._equips[armorTypeId] ? actor._equips[armorTypeId]._itemId : 0;
+                //如果不与装备的一样
                 if (prevArmorId !== armorId) {
                     if (prevArmorId !== 0) {
-                        $gameParty.gainItem($dataArmors[prevArmorId], 1);
+                        const prevArmor = armorTypeId === 0 ? $dataWeapons[prevArmorId] : $dataArmors[prevArmorId];
+                        $gameParty.gainItem(prevArmor, 1);
                     }
-                    $gameParty.loseItem($dataArmors[armorId], 1);
-                }
-                if (actor._equips[armorTypeId]) {
-                    actor.forceChangeEquip(armorTypeId, $dataArmors[armorId]);
+                
+                    const newArmor = armorTypeId === 0 ? $dataWeapons[armorId] : $dataArmors[armorId];
+                    $gameParty.loseItem(newArmor, 1);
+                
+                    if (actor._equips[armorTypeId]) {
+                        actor.forceChangeEquip(armorTypeId, newArmor);
+                    }
                 }
             }
         }
@@ -206,21 +215,21 @@
             }
         }
     }
-    // CM_BattleManager_initMembers = BattleManager.initMembers;
-    // BattleManager.initMembers = function() {
-    //     CM_BattleManager_initMembers.call(this);
-    //     //如果装备自慰棒获得拔棒技能
-    //     if ($gameActors.actor(1)._equips[14]._itemId === 321 && !$gameActors.actor(1).hasSkill(1161) ) 
-    //     {
-    //         $gameActors.actor(1).learnSkill(1161)
-    //     }
-    // };
+    CM_BattleManager_initMembers = BattleManager.initMembers;
+    BattleManager.initMembers = function() {
+        CM_BattleManager_initMembers.call(this);
+        //如果装备自慰棒获得拔棒技能
+        if ($gameActors.actor(1)._equips[14]._itemId === 321 && !$gameActors.actor(1).hasSkill(1161)
+            && $gameActors.actor(1)._equips[0]._itemId !== 252)
+        {
+            $gameActors.actor(1).learnSkill(1161)
+        }
+    };
 
-    // CM_BattleManager_updateBattleEnd = BattleManager.updateBattleEnd ;
-    // BattleManager.updateBattleEnd = function() {
-    //     CM_BattleManager_updateBattleEnd.call(this);
-    //     if ($gameActors.actor(1).hasSkill(1161) ) $gameActors.actor(1).forgetSkill(1161);
-    //     $gameVariables._data[3783] = 0;
-    // };
+    CM_BattleManager_updateBattleEnd = BattleManager.updateBattleEnd ;
+    BattleManager.updateBattleEnd = function() {
+        CM_BattleManager_updateBattleEnd.call(this);
+        if ($gameActors.actor(1).hasSkill(1161) ) $gameActors.actor(1).forgetSkill(1161);
+    };
 })();
 
