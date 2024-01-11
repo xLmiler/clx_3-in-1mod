@@ -497,6 +497,7 @@ ConfigManager.noPump = false;
 ConfigManager.noScar = false;
 ConfigManager.noPaint = false;
 ConfigManager.noBlacken = false;
+ConfigManager.noWing = false;
 
 Object.defineProperty(ConfigManager, 'bgmVolume', {
     get: function() {
@@ -572,6 +573,7 @@ ConfigManager.makeData = function() {
 	config.noScar = this.noScar;
 	config.noPaint = this.noPaint;
 	config.noBlacken = this.noBlacken;
+	config.noWing = this.noWing;
     config.bgmVolume = this.bgmVolume;
     config.bgsVolume = this.bgsVolume;
     config.meVolume = this.meVolume;
@@ -594,6 +596,7 @@ ConfigManager.applyData = function(config) {
 	this.noScar = this.readFlag(config,'noScar');
 	this.noPaint = this.readFlag(config,'noPaint');
 	this.noBlacken = this.readFlag(config,'noBlacken');
+	this.noWing = this.readFlag(config,'noWing');
     this.bgmVolume = this.readVolume(config, 'bgmVolume');
     this.bgsVolume = this.readVolume(config, 'bgsVolume');
     this.meVolume = this.readVolume(config, 'meVolume');

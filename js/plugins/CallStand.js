@@ -23,6 +23,8 @@
 	const _Game_Interpreter_pluginCommand = Game_Interpreter.prototype.pluginCommand;
 	Game_Interpreter.prototype.pluginCommand = function (command, args) {
 		_Game_Interpreter_pluginCommand.call(this, command, args);
+		//角色部分
+		const user = $gameActors.actor(1);
 		if (command === 'CallStand' || command === 'CallStandForce') {
 			let StandPoseID = 0;
 			if (args[0].match(/\\v/)) {
@@ -39,9 +41,6 @@
 
 
 			//此部分是进行变量初始化部分
-
-			//角色部分
-			const user = $gameActors.actor(1);
 
 			//立绘坐标部分
 			let Stand1X = 380; //立绘的X坐标
@@ -90,11 +89,11 @@
 
 
 			//获取身上装备的特殊属性值
-			let EqClothOpacity = StandEqNum >= 5 ?$dataArmors[StandEqNum].meta.ClothOpacity : 0 //获取角色衣服的不透明度数值
-			let UnderPicFlag = StandEqNum >= 5 ? Number($dataArmors[StandEqNum].meta.ClothUnderFlag):0; //获取角色内衣的标志，是否显示内衣
+			let EqClothOpacity = StandEqNum >= 5 ? $dataArmors[StandEqNum].meta.ClothOpacity : 0 //获取角色衣服的不透明度数值
+			let UnderPicFlag = StandEqNum >= 5 ? Number($dataArmors[StandEqNum].meta.ClothUnderFlag) : 0; //获取角色内衣的标志，是否显示内衣
 			let NippleL = StandEqNum >= 5 ? $dataArmors[StandEqNum].meta.ClothNippleL[StandPoseID - 1] : 1
 			let NippleR = StandEqNum >= 5 ? $dataArmors[StandEqNum].meta.ClothNippleR[StandPoseID - 1] : 1
-			let Cosplay =  StandEqNum >= 5 && $dataArmors[StandEqNum].meta.Cosplay ? 1:0;//获取角色衣服是否是cosplay
+			let Cosplay = StandEqNum >= 5 && $dataArmors[StandEqNum].meta.Cosplay ? 1 : 0;//获取角色衣服是否是cosplay
 
 
 			//检查各种立绘状态标志
@@ -123,7 +122,7 @@
 			let SemenMouth = $gameVariables.value(943)//嘴部部分
 
 			//身体颜色部分
-			let bodyTone = user.isStateAffected(316) ? [50, 0, 29, 0] : [0, 0, 0, 0];//存储身体的色调变化
+			let bodyTone = [$gameVariables.value(4846) * 0.5, 0, $gameVariables.value(4846) * 0.3, 0];//存储身体的色调变化
 
 			//其他变量设置
 
@@ -132,7 +131,6 @@
 			$gameVariables._data[742] = $gameVariables.value(722)
 			let blackBody = $gameSwitches.value(3001)//日晒皮肤开关
 			let demonBody = $gameSwitches.value(98)//魔人皮肤开关
-			let masturbation_stick = $gameVariables.value(3783)//自慰棒切换开关
 
 
 			//这里开始是游戏的立绘处理
@@ -217,6 +215,8 @@
 			if (user.isStateAffected(407)) {
 				Mark1 = "14";
 			}
+
+
 			//涂鸦
 			if ($gameVariables.value(4900) > 0) {
 				if ($gameVariables.value(4900) <= 1) { PaintIndex = "11" }
@@ -254,14 +254,15 @@
 				stand_Lmark1,
 				stand_Lmark2,
 				stand_neck,
+				stand_potion,
 				stand_byt,
 				stand_semenbody,
 				stand_semenface,
 				stand_semenmouth, //尾巴处理到此为止
 				effect_breath,
-				stand_diffront] = Array(34).fill(null).map((_, i) => i); //diffront在下面reset_ERO
-
-			var stand_array = Array(34).fill(null).map((_, i) => i + 110);
+				stand_diffront] = Array(35).fill(null).map((_, i) => i); //diffront在下面reset_ERO
+			//动图层数量必须改数组长度
+			var stand_array = Array(35).fill(null).map((_, i) => i + 110);
 
 			//如果您想指定服装，请在此处更改流程
 			if (StandEqNum >= 5) {
@@ -273,15 +274,19 @@
 				} else { ClothUpdate = 0 }//透過度が違う場合保存して更新フラグオン
 				$gameVariables._data[4964] = EqClothOpacity
 
-				//衣服破损状态的切换
-				if (StandEqNum == 65 && user.isStateAffected(94)) StandEqNum = 61
-				if (StandEqNum == 65 && user.isStateAffected(95)) StandEqNum = 62
-				if (StandEqNum == 67 && user.isStateAffected(94)) StandEqNum = 68
-				if (StandEqNum == 67 && user.isStateAffected(95)) StandEqNum = 69
-				if (StandEqNum == 71 && user.isStateAffected(94)) StandEqNum = 72
-				if (StandEqNum == 71 && user.isStateAffected(95)) StandEqNum = 73
-				if (StandEqNum == 76 && user.isStateAffected(94)) StandEqNum = 63
-				if (StandEqNum == 76 && user.isStateAffected(95)) StandEqNum = 64
+				//衣服破损切换		
+				if (user.isStateAffected(94)) {
+					let biriIndex = [65, 67, 71, 76].indexOf(StandEqNum);//永恒、淫咒、无垢、邪障
+					if (biriIndex >= 0) StandEqNum = [315, 317, 321, 326][biriIndex];
+				}
+				if (user.isStateAffected(95)) {
+					let biriIndex = [65, 67, 71, 76].indexOf(StandEqNum);
+					if (biriIndex >= 0) StandEqNum = [316, 318, 322, 327][biriIndex];
+				}
+				//
+				if (StandEqNum == 74 && user.isStateAffected(382)) StandEqNum = 324; //魅魔衣服切换
+
+				//获取衣服的文件id
 				ClothPicFileNum = $dataArmors[StandEqNum].meta.PID;
 				//淫触魔衣切换
 				if (StandEqNum == 70 && $gameSwitches.value(1838)) ClothPicFileNum += 'b';
@@ -297,20 +302,8 @@
 				(StandEqNum == 77 && $CM_runiu == 3) ? user.addState(423) : user.removeState(423);
 				//永恒特效
 				if ([65, 61, 62].includes(StandEqNum) && (user.isStateAffected(88) || user.isStateAffected(382))) ClothPicFileNum += 'b';
-
-				if (StandPoseID <= 2 && StandEqNum == 75) {
-					if (user.isStateAffected(435)) {
-						ClothPicFileNum += 'a';
-					} else if (user.isStateAffected(436)) {
-						ClothPicFileNum += 'b';
-					} else if (user.isStateAffected(437)) {
-						ClothPicFileNum += 'c';
-					} else if (user.isStateAffected(438)) {
-						ClothPicFileNum += 'd';
-					} else if (user.isStateAffected(439)) {
-						ClothPicFileNum += 'e';
-					}
-				}
+				//魔人状态转换
+				if (StandPoseID <= 2 && StandEqNum == 75) ClothPicFileNum += updatestate_for_value([435, 436, 437, 438, 439], ['a', 'b', 'c', 'd', 'e'])
 
 				if (StandAltFlag < 1 && $dataArmors[StandEqNum].meta.AltDifference && $dataArmors[StandEqNum].meta.AltDifference[StandPoseID - 1] > 0) ClothPicFileNum += 'b';
 			}
@@ -386,6 +379,7 @@
 				stand_Lmark1,
 				stand_Lmark2,
 				stand_neck,
+				stand_potion,
 				stand_byt,
 				stand_semenbody,
 				stand_semenface,
@@ -399,7 +393,8 @@
 			StandPoseID = ('00' + StandPoseID).slice(-2);//ゼロ埋め
 			BasePoseFileName += StandPoseID//ポーズ名を結合
 			BasePose2FileName += StandPoseID//ポーズ名を結合
-			//立ち絵素体//変身中か乳首見えてるかなど'';
+
+			//变身后的立绘的身体部分处理以及武器图像处理;
 			if (StandAltFlag >= 1) {
 				if (demonBody) {
 					BaseID = "0006";
@@ -437,7 +432,7 @@
 				FileName = 'organ/' + StandPoseID + 'b';
 				if ($gameScreen.picture(stand_bb) && $gameScreen.picture(stand_bb)._name == FileName) {
 				} else {
-					$gameScreen.showPicture(stand_bb, FileName, origin, Stand1X, Stand1Y, scale, scale, (($gameVariables.value(1103) + $gameVariables.value(1074)) / 20 * 255).clamp(0, 255), 0);
+					$gameScreen.showPicture(stand_bb, FileName, origin, Stand1X, Stand1Y, scale, scale, (($gameVariables.value(1103) + $gameVariables.value(1074) * 0.5 + $gameVariables.value(1072)) / 20 * 255).clamp(0, 255), 0);
 				}
 			}
 
@@ -467,7 +462,7 @@
 					P._tone = $gameActors.actor(2).toneArray[user._equips[1]._itemId];
 					$gameScreen._pictures[realPictureId] = P;
 				}
-			} else { $gameScreen.erasePicture(stand_cloth) } 
+			} else { $gameScreen.erasePicture(stand_cloth) }
 			//脚　変身中は反映なし
 			if (LegPicFileNum != 0 && (StandAltFlag == 0 || Cosplay == 1)) {
 				FileName = BasePoseFileName + "_option_" + "00" + (LegPicFileNum.replace(/\D/g, '').length > 1 ? "" : "0") + LegPicFileNum
@@ -509,19 +504,13 @@
 			}
 			//表情    
 			var FaceId = AutoFaceId(user);
+			//魔人
 			if (user._classId == 4 && StandPoseID <= 2) {
-				if (user.isStateAffected(435)) {
-					FaceId = '62a';
-				} else if (user.isStateAffected(436)) {
-					FaceId = '62b';
-				} else if (user.isStateAffected(437)) {
-					FaceId = '62c';
-				} else if (user.isStateAffected(438)) {
-					FaceId = '62d';
-				} else if (user.isStateAffected(439)) {
-					FaceId = '62e';
-				}
-			}//魔人
+				FaceId = updatestate_for_value([435, 436, 437, 438, 439],['62a', '62b', '62c', '62d', '62e'])
+				if (FaceId == 0) FaceId = AutoFaceId(user)
+			}
+			
+
 			if (FaceId == 0 || ['06', '10'].includes(StandPoseID) || !$gameScreen.picture(stand_base)) {
 				if ($gameScreen.picture(stand_face)) $gameScreen.erasePicture(stand_face);
 			} else {
@@ -660,6 +649,23 @@
 				FileName = BasePoseFileName + "_option_" + "0037";
 				if ($gameScreen.picture(effect_splash) && $gameScreen.picture(effect_splash)._name == FileName) { }
 				else { $gameScreen.showPicture(effect_splash, FileName, origin, Stand1X, Stand1Y, scale, scale, 255, 0); }
+			}
+			//媚药
+			if ($gameVariables.value(4845) <= 0) { $gameScreen.erasePicture(stand_potion); }
+			else {
+				if ($gameVariables.value(4845) <= 1) {
+					FileName = 'mark/' + StandPoseID + "_14";
+					if ($gameScreen.picture(stand_potion) && $gameScreen.picture(stand_potion)._name == FileName) { }
+					else {
+						$gameScreen.showPicture(stand_potion, FileName, origin, Stand1X, Stand1Y, scale, scale, 255, 0);
+					}
+				} else {
+					FileName = 'mark/' + StandPoseID + "_15";
+					if ($gameScreen.picture(stand_potion) && $gameScreen.picture(stand_potion)._name == FileName) { }
+					else {
+						$gameScreen.showPicture(stand_potion, FileName, origin, Stand1X, Stand1Y, scale, scale, 255, 0);
+					}
+				}
 			}
 			//精液body
 			if (SemenBody < 1) { $gameScreen.erasePicture(stand_semenbody); }
@@ -830,14 +836,24 @@
 				if (window.breathDir >= 0) {
 					window.breathDir -= 5;
 					if (Math.abs(window.breathDir) < 10) {
-						window.breathDir = -40;
-						$gameScreen.movePicture(effect_breath, origin, Stand1X, Stand1Y, scale, scale, 180, 0, 20);
+						if (user.isStateAffected(316)) {
+							window.breathDir = -25;
+							$gameScreen.movePicture(effect_breath, origin, Stand1X, Stand1Y, scale, scale, 255, 0, 15);
+						} else {
+							window.breathDir = -35;
+							$gameScreen.movePicture(effect_breath, origin, Stand1X, Stand1Y, scale, scale, 180, 0, 20);
+						}
 					}
 				} else {
 					window.breathDir += 5;
 					if (Math.abs(window.breathDir) < 10) {
-						window.breathDir = 120;
-						$gameScreen.movePicture(effect_breath, origin, Stand1X, Stand1Y, scale, scale, 0, 0, 60);
+						if (user.isStateAffected(316)) {
+							window.breathDir = 65;
+							$gameScreen.movePicture(effect_breath, origin, Stand1X, Stand1Y, scale, scale, 0, 0, 45);
+						} else {
+							window.breathDir = 95;
+							$gameScreen.movePicture(effect_breath, origin, Stand1X, Stand1Y, scale, scale, 0, 0, 60);
+						}
 					}
 				}
 			}
@@ -883,6 +899,17 @@
 		}
 	};
 	/**
+	 * 根据状态更新对应变量的值
+	 * @param {Array} userStates 需要判断的状态数组
+	 * @param {Array} assignment 需要根据对应状态增加或修改的值数组
+	 * @returns 
+	 */
+	function updatestate_for_value(userStates, assignment) {
+		const stateIndex = userStates.findIndex(id => $gameActors.actor(1)._states.includes(id));
+		if (stateIndex >= 0) return assignment[stateIndex] 
+		if (stateIndex <= -1) return typeof assignment[0] === 'number' ? 0 : ""
+	}
+	/**
 	 * @param MovePic 移动图片函数
 	 * @param TempPicNum：图片编号
 	 * @param Stand1X：图片1的X坐标
@@ -903,8 +930,6 @@
 		else {
 			var FaceId = 2
 			var Estrus = 35
-			var BigEstrus = 60
-			var OverEstrus = 61
 			var Battle = 13
 			var Extasy = 34
 			var ShameSmile = 33
@@ -921,17 +946,17 @@
 			var BigOrgasm = 41
 			var Hyp = 38
 
-			if (user._classId == 3) { FaceId = 50; }//魅魔
+			if (user._classId > 2) { FaceId = 50; }//魅魔
 			else if ($gameVariables.value(916) == 9 && $gameVariables.value(351) >= 1) { FaceId = MouthOpen }//奉仕
 			else if (user.isStateAffected(164)) { FaceId = BigOrgasm }//强绝顶
 			else if (user.isStateAffected(163)) { FaceId = Orgasm }//弱绝顶
-			else if ($gameVariables.value(1027) >= 150) { FaceId = OverEstrus; }//界限発情中
-			else if ($gameVariables.value(1027) >= 100) { FaceId = BigEstrus; }//强発情中
-			else if ($gameVariables.value(1027) >= 50 && $gameVariables.value(1026) >= $gameVariables.value(619) * 0.5) { FaceId = Estrus; }//発情中
+			else if ($gameVariables.value(1027) >= 150) { FaceId = 43; }//発情150
+			else if ($gameVariables.value(1027) >= 100) { FaceId = 42; }//発情100
 			else if (user.isStateAffected(165)) {
 				if ($gameVariables.value(1033) == 3) FaceId = 40;
 				else FaceId = 37;
 			}//绝顶余韵
+			else if ($gameVariables.value(1027) >= 50) { FaceId = Estrus; }//発情50
 			else if ($gameVariables.value(1026) >= $gameVariables.value(619) * 0.5) { FaceId = Extasy }//快感高
 			else if ($gameVariables.value(1020) >= 1) { FaceId = ShameUnhappy }//ぶっかけ
 			else if (user.isStateAffected(28)) { FaceId = Shame }//羞恥

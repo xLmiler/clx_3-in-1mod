@@ -285,9 +285,9 @@
 			//高潮扣血蓝处理
 			Orgasm *= (100 - $gameVariables.value(1281)) / 100;
 			if($gameParty.inBattle()){
-				actor.gainHp(-Math.round(actor.mhp * Math.max(Orgasm * 16 - actor._tp,0) / 250));
+				actor.gainHp(-Math.round(actor.mhp * Orgasm / 20));
 			}else{
-				actor.gainHp(-Math.round(Math.min(actor.mhp * Math.max(Orgasm * 16 - actor._tp,0) / 250,actor.hp - 1)));
+				actor.gainHp(-Math.round(Math.min(actor.mhp * Orgasm / 20,actor.hp - 1)));
 			}
 			var a = actor.mmp * Orgasm / 30;
 			if(actor.mp > -actor.mmp){//触手吸收
@@ -328,6 +328,12 @@
 					$gameVariables._data[2020] = $gameVariables.value(2020) + PlayNum + randomNum		
 				}					
 				this.pluginCommand('ExtasySemen',[0]);
+				if(actor.isLearnedSkill(960)){
+					if(actor.isStateAffected(96)){
+						actor.save.luna += 1;
+						this.setupChild($dataCommonEvents[1046].list, 0)
+					}	
+				}
             }
             else if(PlayID == "肛内射精"){
                 $gameVariables._data[945] = $gameVariables.value(945) + PlayNum + randomNum
@@ -364,7 +370,7 @@
                 if(PlayArray[i] == "羞恥経験"){$gameVariables._data[2062] += PlayNum + randomNum}
                 if(PlayArray[i] == "セックス経験"){
 					$gameVariables._data[2045] += PlayNum + randomNum;
-					$gameVariables._data[4875] = 0;
+					$gameVariables._data[4875] -= Math.min((PlayNum + randomNum)*500,$gameVariables.value(4875));
 					actor.biriSocks();
 				}
                 if(PlayArray[i] == "アナルセックス経験"){
@@ -378,7 +384,7 @@
                 if(PlayArray[i] == "肛内射精経験"){$gameVariables._data[2056] += PlayNum + randomNum}
                 if(PlayArray[i] == "飲精経験"){
 					$gameVariables._data[2055] += PlayNum + randomNum;
-					$gameVariables._data[4876] = 0;
+					$gameVariables._data[4876] -= Math.min((PlayNum + randomNum)*500,$gameVariables.value(4876));
 				}
                 if(PlayArray[i] == "絶頂経験"){$gameVariables._data[2057] += PlayNum + randomNum}
                 if(PlayArray[i] == "強絶頂経験"){$gameVariables._data[2058] += PlayNum + randomNum}

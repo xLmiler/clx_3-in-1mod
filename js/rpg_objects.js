@@ -2205,6 +2205,7 @@ Game_BattlerBase.prototype.initMembers = function() {
     this._hp = 1;
     this._mp = -9999;
     this._tp = 0;
+	this._lust = Math.randomInt(20);
     this._hidden = false;
     this.clearParamPlus();
     this.clearStates();
@@ -3055,11 +3056,6 @@ Game_Battler.prototype.refresh = function() {
 		if(this.isEnemy()){
 			$gameVariables._data[318] += $dataEnemies[this._enemyId].meta['ELevel'] * 10;
 			$gameSystem.addToEnemyBook(this._enemyId);
-			if(window.keyList.length > 0){
-				if($gameActors.actor(1).hp <= 0 && $gameTroop.aliveMembers().length < 1){
-					window.keyList = [];
-				}
-			}
 			this.removeState(3);
 		}
     } else {
@@ -4373,6 +4369,7 @@ Game_Enemy.prototype.initMembers = function() {
     this._screenX = 0;
     this._screenY = 0;
 	this._semen = 0;
+	this._item = 0;
 };
 
 Game_Enemy.prototype.setup = function(enemyId, x, y) {

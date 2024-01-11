@@ -52,7 +52,7 @@
             var CrPointBase = 0//会心一击加算値
             var CrCorrect = 50//会心一击補正値(パーセント)
             var RangeNum = 40//乱数範囲
-			var PartTole = $gameVariables.value(1098) //部位耐性
+			var PartTole = 0 //部位耐性
 			var bodyRatio = 1; //体质增幅
 
             //開発度代入基礎感度は　行為判定にしてしまう？
@@ -63,7 +63,7 @@
 				bodyRatio += $gameVariables.value(1231) / 100;
 				PartTole -= actor.EXT.mouth;
 				actor.EXT.mouth += Math.floor(Math.random()*3) + 2;
-				if(actor.EXT.mouth > 100 - $gameVariables.value(1098)) actor.EXT.mouth = 100 - $gameVariables.value(1098);
+				if(actor.EXT.mouth > 100) actor.EXT.mouth = 100;
 				if(actor.isLearnedSkill(825)) $gameVariables._data[2027] += 5;
 				else if(actor.isLearnedSkill(824)) $gameVariables._data[2027] += 2;
             }
@@ -74,7 +74,7 @@
 				if(actor.hasArmor($dataArmors[228])){ExtasyPart *= 2; BaseExtasy *= 2;}
 				PartTole -= actor.EXT.nipple;
 				actor.EXT.nipple += Math.floor(Math.random()*3) + 2;
-				if(actor.EXT.nipple > 100 - $gameVariables.value(1098)) actor.EXT.nipple = 100 - $gameVariables.value(1098);			
+				if(actor.EXT.nipple > 100) actor.EXT.nipple = 100		
             }
             else if(ExtasyType == "Clit"){
                 ExtasyPart = $gameVariables.value(1104);
@@ -82,7 +82,7 @@
                 BaseExtasy = 2;
 				PartTole -= actor.EXT.clit;
 				actor.EXT.clit += Math.floor(Math.random()*3) + 2;
-				if(actor.EXT.clit > 100 - $gameVariables.value(1098)) actor.EXT.clit = 100 - $gameVariables.value(1098);			
+				if(actor.EXT.clit > 100) actor.EXT.clit = 100;			
             }
             else if(ExtasyType == "Vagina"){
                 ExtasyPart = $gameVariables.value(1106);
@@ -92,7 +92,7 @@
 				PartTole -= actor.EXT.vagina - 25;
 				if(actor.isStateAffected(41) || actor.isStateAffected(37)) PartTole -= 50;
 				actor.EXT.vagina += Math.floor(Math.random()*3) + 2;
-				if(actor.EXT.vagina > 100 - $gameVariables.value(1098)) actor.EXT.vagina = 100 - $gameVariables.value(1098);		
+				if(actor.EXT.vagina > 100) actor.EXT.vagina = 100;		
             }
             else if(ExtasyType == "Anus"){
                 ExtasyPart = $gameVariables.value(1105) * 1.25;
@@ -102,7 +102,7 @@
 				PartTole -= actor.EXT.anus - 25;
 				if(actor.isStateAffected(38)) PartTole -= 50;
 				actor.EXT.anus += Math.floor(Math.random()*3) + 2;
-				if(actor.EXT.anus > 100 - $gameVariables.value(1098)) actor.EXT.anus = 100 - $gameVariables.value(1098);				
+				if(actor.EXT.anus > 100) actor.EXT.anus = 100;				
             }
             else if(ExtasyType == "Hip"){
                 ExtasyPart = $gameVariables.value(1105);
@@ -134,7 +134,7 @@
 				bodyRatio += $gameVariables.value(1234) / 100;
 				PartTole -= actor.EXT.mouth;
 				actor.EXT.mouth += Math.floor(Math.random()*3) + 2;
-				if(actor.EXT.mouth > 100 - $gameVariables.value(1098)) actor.EXT.mouth = 100 - $gameVariables.value(1098);
+				if(actor.EXT.mouth > 100) actor.EXT.mouth = 100;
 				if(actor.isLearnedSkill(841)) $gameVariables._data[2027] += 5;
 				else if(actor.isLearnedSkill(840)) $gameVariables._data[2027] += 2;
             }
@@ -175,26 +175,22 @@
             //発情補正 発情値パーセント分の快感度を加算
             AddEstrus = CulExtasyPoint
             AddEstrus *= Estrus
-            AddEstrus /= 200//係数  
-
-            //会心一击計算
-            var CriticalPart = ExtasyPart * 5;
-            Critical += CriticalPart;////部位感度の5倍の値を基本値に加算
+            AddEstrus /= 400//係数  
+           
+            
+			//補正値加算
+            CulExtasyPoint += AddEstrus //発情加算
+			CulExtasyPoint *= bodyRatio//体质乘算
+			
+			 //会心一击計算
+            Critical += ExtasyPart * 5;////部位感度の5倍の値を基本値に加算
 			if($gameSwitches.value(2924)){//快感暴击率补正
 				Critical += 50;
 				$gameSwitches._data[2924] = false;
 			}
-            var CriticalRandom = Math.floor(Math.random() * (101-1)+1);//1-100のランダム値
-            if (Critical >= CriticalRandom) {//割合加算
-                CrPointBase = CulExtasyPoint
-                CrPointBase *= CrCorrect
-                CrPointBase /= 100
+            if (Critical > Math.randomInt(100)) {//割合加算
+                CulExtasyPoint *= (CrCorrect + 100) / 100;
 			}
-                
-			//補正値加算
-            CulExtasyPoint += AddEstrus //発情加算
-            CulExtasyPoint += CrPointBase //会心一击加算
-			CulExtasyPoint *= bodyRatio//体质乘算
 
 
             //範囲乱数化
@@ -212,7 +208,10 @@
             }
 
             //最終値を加算
-            ExtasyPointTotal = Math.floor(CulExtasyPoint - CulExtasyPoint * PartTole / 100);
+			CulExtasyPoint *= (200 - PartTole) / 200;
+			CulExtasyPoint *= (100 - $gameVariables.value(1098)) / 100;
+			CulExtasyPoint *= (100 + $gameVariables.value(4846)) / 100;
+            ExtasyPointTotal = Math.floor(CulExtasyPoint); //隐耐性显耐性处理
 			if(ExtasyPointTotal < 1) ExtasyPointTotal = 1;
 			if(ExtasyPointTotal > $gameVariables.value(1159)){
 				$gameVariables._data[1159] = ExtasyPointTotal;
@@ -220,7 +219,7 @@
 			}
 			$gameVariables._data[1026] += ExtasyPointTotal
 			$gameVariables._data[4992] = ExtasyPointTotal			
-			$gameVariables._data[411] -= ExtasyPointTotal / 2
+			$gameVariables._data[411] -= Math.min(ExtasyPointTotal / 2 , 150);
 			if(CrPointBase > 0){
 				TickerManager.show(`\\i[892]\\c[27]会心一击`);
 				$gameScreen.startFlash([255,255,255,100], 20);}

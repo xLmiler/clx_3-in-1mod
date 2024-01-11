@@ -224,6 +224,8 @@
             ParamaxDarkDrug(Sub)
             Sub = 3715//真白饱腹值
             Paramax0_10(Sub)
+            Sub = 4846//媚药浸染
+		        Paramax0_100(Sub)
             if ($gameVariables.value(1020) > 30) $gameVariables._data[1020] = 30;
         }
     }

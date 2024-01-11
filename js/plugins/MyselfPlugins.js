@@ -57,29 +57,42 @@
 		var CulExtasyPoint = 0;
 		if($gameVariables.value(1238) > 0){
 			CulExtasyPoint = (2 * Math.random() + 1 + $gameVariables.value(4878)) * $gameVariables.value(1238);
-			CulExtasyPoint *= ($gameVariables.value(1027) + 100) / 100;
+			CulExtasyPoint *= ($gameVariables.value(1027) + 400) / 400;
 			if(Math.random() < 0.05 + $gameActors.actor(1).isLearnedSkill(960) * 0.5){
 				TickerManager.show(`\\i[892]\\c[27]会心一击`);
                 $gameScreen.startFlash([255,255,255,100], 20);
 				CulExtasyPoint *= 1.5;}
-			ExtasyPointTotal = Math.floor(CulExtasyPoint - CulExtasyPoint * $gameVariables.value(1098) / 100)
+			CulExtasyPoint *= (100 - $gameVariables.value(1098)) / 100;
+			CulExtasyPoint *= (100 + $gameVariables.value(4846)) / 100;
+			ExtasyPointTotal = Math.floor(CulExtasyPoint)
 			$gameVariables._data[1026] += ExtasyPointTotal
             $gameVariables._data[4992] = ExtasyPointTotal
-			$gameVariables._data[411] -= ExtasyPointTotal / 2
+			$gameVariables._data[411] -= Math.min(ExtasyPointTotal / 2 , 150);
 			if(ExtasyPointTotal > 0) TickerManager.show(`\\i[3582]\\c[27]快感值 \\V[4992]`);
 			this.setupChild($dataCommonEvents[167].list, 0)
 		}
 	}
 	else if(command.toLowerCase() === "add_abu_enemy") {
-		var EnemyList = [];
-		EnemyList = $gameActors.actor(1).abu.enemyList;
-		if(EnemyList.length < 1)	return;
-		var EnemyID = EnemyList[Math.randomInt(EnemyList.length)];
+		if (args[0] && args[0].match(/\\v/)) {
+			array = args[0].match(/[0-9]+\.?[0-9]*/g);
+			for(var i = 0; i < array.length; i++) {
+				args[0] = Number(array);
+				var index = $gameVariables.value(args[0]);
+			}
+        }else var index = args[0]
+		if(index > 0) var EnemyID = index;
+		else{
+			var EnemyList = [];
+			EnemyList = $gameActors.actor(1).abu.enemyList;
+			if(EnemyList.length < 1)	return;
+			var EnemyID = EnemyList[Math.randomInt(EnemyList.length)];
+		}
 		var x = 300 + Math.randomInt(300);
 		var y = 300 + Math.randomInt(200);
 		var enemy = new Game_Enemy(EnemyID, x, y);
 		$gameTroop._enemies.push(enemy);
 		enemy.addState(3);
+		enemy.addState(396); //支援flag
 		enemy.addRandomBuff();
 		var kindState = ['demon','daimaoabu','slime','renegade','human','tentacle','variant','imitator','aquatic','slaver','insect','machine','plant','succubus','abadoncore','worm','boss','demidemon','hybrid']
 		for(var i = 0; i < kindState.length; i++){
@@ -91,13 +104,25 @@
 		$gameTroop.makeUniqueNames();
 	}
 	else if(command.toLowerCase() === "clear_abu_enemy"){
+		var temp = $gameTroop._enemies.length;
 		for(var index = 0;index < $gameTroop._enemies.length;index++){
-			if(!$dataEnemies[$gameTroop._enemies[index]._enemyId].meta['BindSkill'] && !$dataEnemies[$gameTroop._enemies[index]._enemyId].meta['noMine']){//noMine指定不可退场怪人
+			if($gameTroop._enemies[index].isStateAffected(395) && $gameTroop._enemies[index].canMove()){
+				if(!$gameTroop._enemies[index].isStateAffected(396)) window.keyList = [];
 				$gameTroop._enemies.splice(index,1);
-				BattleManager._spriteset.removeEnemies();
-				BattleManager._spriteset.createEnemies();
-				AudioManager.playSe({name: 'Move1', pan: 0, pitch: 100, volume: 100});
-				break;}}
+				index--;
+				continue;
+			}
+			var enemyData = $dataEnemies[$gameTroop._enemies[index]._enemyId];
+			if(!enemyData.meta['noMine']){
+				if($gameTroop._enemies[index].hp <= $gameTroop._enemies[index].mhp * 0.05) $gameTroop._enemies[index].addState(395);
+				if($gameSwitches.value(190) && !enemyData.meta['BindSkill']) $gameTroop._enemies[index].addState(395);
+			}
+		}
+		if(temp > $gameTroop._enemies.length){
+			BattleManager._spriteset.removeEnemies();
+			BattleManager._spriteset.createEnemies();
+			AudioManager.playSe({name: 'Run', pan: 0, pitch: 100, volume: 100});
+		}
 	}
 	else if (command.toLowerCase() === "add_enemy_troop") {
 		 for(var i = 0;i < $gameActors.actor(1).jumpEnemy.length;i++){
@@ -109,6 +134,7 @@
 					var y = 300 + Math.randomInt(200);
 					var enemy = new Game_Enemy(member.enemyId, x, y);
 					$gameTroop._enemies.push(enemy);
+					enemy.addState(396); //支援flag
 				}   
 			}
 			BattleManager._spriteset.removeEnemies();
@@ -162,20 +188,11 @@ Game_Actor.prototype.hasSword = function() {
     return this.weapons().length > 0;
 };
 
-BattleManager.canEscape = function() {
-	if(this._canEscape && $gameActors.actor(1)._tp >= 10 && 
-	  ($gameActors.actor(1)._equips[14]._itemId === 321 || $gameActors.actor(1)._equips[0]._itemId === 252))
-	{
-		TickerManager.show(`\\i[892]\\C[27]不可以逃跑哦~`);
-		return false
-	}
-    return this._canEscape && $gameActors.actor(1)._tp >= 10;
-};
-
 BattleManager.checkSubstitute = function(target) {
     return !this._action.isCertainHit() && this._action.isForOpponent();
 };
 
+//通过钥匙获取衣服强制装备
 Game_Actor.prototype.addKey = function(keyId){
 var slotId = $dataItems[keyId].meta.body;
 var Id = $gameVariables.value(312);
@@ -282,7 +299,7 @@ DataManager.isThisGameFile = function(savefileId) {
 BattleManager.earphone = function(){//耳机
 	var index = earphoneIndex();
 	if(!index){AudioManager.stopBgs(); return;}
-	if(AudioManager._currentBgs && index[0] == AudioManager._currentBgs.name.slice(0,-2)) return;
+	if(AudioManager._currentBgs && index[0] == AudioManager._currentBgs.name.slice(0,-2)) return; //同类型播放完毕再取随机数
 	
 	FileName = index[0] + (Math.randomInt(index[1])+1);
 	AudioManager.playBgs({name: FileName, pan: 0, pitch: 100, volume: 100});

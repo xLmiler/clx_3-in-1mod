@@ -215,21 +215,21 @@
             }
         }
     }
-    CM_BattleManager_initMembers = BattleManager.initMembers;
-    BattleManager.initMembers = function() {
-        CM_BattleManager_initMembers.call(this);
-        //如果装备自慰棒获得拔棒技能
-        if ($gameActors.actor(1)._equips[14]._itemId === 321 && !$gameActors.actor(1).hasSkill(1161)
-            && $gameActors.actor(1)._equips[0]._itemId !== 252)
-        {
-            $gameActors.actor(1).learnSkill(1161)
-        }
-    };
+    // CM_BattleManager_initMembers = BattleManager.initMembers;
+    // BattleManager.initMembers = function() {
+    //     CM_BattleManager_initMembers.call(this);
+    //     //如果装备自慰棒获得拔棒技能
+    //     if ($gameActors.actor(1)._equips[14]._itemId === 321 && !$gameActors.actor(1).hasSkill(1161)
+    //         && $gameActors.actor(1)._equips[0]._itemId !== 252)
+    //     {
+    //         $gameActors.actor(1).learnSkill(1161)
+    //     }
+    // };
 
-    CM_BattleManager_updateBattleEnd = BattleManager.updateBattleEnd ;
-    BattleManager.updateBattleEnd = function() {
-        CM_BattleManager_updateBattleEnd.call(this);
-        if ($gameActors.actor(1).hasSkill(1161) ) $gameActors.actor(1).forgetSkill(1161);
-    };
+    // CM_BattleManager_updateBattleEnd = BattleManager.updateBattleEnd ;
+    // BattleManager.updateBattleEnd = function() {
+    //     CM_BattleManager_updateBattleEnd.call(this);
+    //     if ($gameActors.actor(1).hasSkill(1161) ) $gameActors.actor(1).forgetSkill(1161);
+    // };
 })();
 
