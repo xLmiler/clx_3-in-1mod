@@ -101,3 +101,11 @@ function damagecul_mat01(a_mat, b_mdf, level) {
     damage *= level;
     return damage;
 }
+
+function damagecul_semen(user,type){
+	//1X¡¢2G¡¢3K
+	var damage = user.mhp * 0.16 + user.mhp * 0.08 * Math.random();
+	damage *= (100 + $gameVariables.value(1231+type) * 2) / 100;
+	if(damage >= user.hp - 1) damage = user.hp - 1;
+	return damage;
+}

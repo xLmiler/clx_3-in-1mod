@@ -149,8 +149,9 @@
             }
             //Shame补正
             if ($gameActors.actor(1).isStateAffected(55)) ClothShame = ClothShame / 2 + 40;
+			if($gameSwitches.value(2922) || $gameSwitches.value(2923)) ClothShame += 20;
+			window.shame = ClothShame;
             if ($gameActors.actor(1).hasArmor($dataArmors[426])) ClothShame -= 200;
-            if ($gameSwitches.value(2922) || $gameSwitches.value(2923)) ClothShame += 20;
 
             //ステルス？
             if ($gameVariables.value(1215) > 0) {
@@ -225,7 +226,7 @@
             Sub = 3715//真白饱腹值
             Paramax0_10(Sub)
             Sub = 4846//媚药浸染
-		        Paramax0_100(Sub)
+		    Paramax0_100(Sub)
             if ($gameVariables.value(1020) > 30) $gameVariables._data[1020] = 30;
         }
     }

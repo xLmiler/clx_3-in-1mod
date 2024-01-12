@@ -3192,7 +3192,7 @@ Game_Battler.prototype.makeActionTimes = function() {
 
 Game_Battler.prototype.makeActions = function() {
     this.clearActions();
-    if (this.canMove()) {
+    if (this.canMove() && !this.isStateAffected(395)) {
         var actionTimes = this.makeActionTimes();
         this._actions = [];
         for (var i = 0; i < actionTimes; i++) {

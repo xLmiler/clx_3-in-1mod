@@ -334,6 +334,10 @@
 						this.setupChild($dataCommonEvents[1046].list, 0)
 					}	
 				}
+				//妊娠处理
+				if($gameActors.actor(1).isLearnedSkill(905)){//习得触手之俘
+					this.setupChild($dataCommonEvents[1052].list, 0)
+				}
             }
             else if(PlayID == "肛内射精"){
                 $gameVariables._data[945] = $gameVariables.value(945) + PlayNum + randomNum

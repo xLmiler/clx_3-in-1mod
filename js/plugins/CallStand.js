@@ -84,8 +84,8 @@
 			let ClothPicFileNum = 0;//获取角色穿着衣服的图片编号
 			let PiercePicFileNum = pierceId >= 5 ? eval($dataArmors[pierceId].meta.PID) : 0; //需要显示在衣服外的文件编号
 			let PiercePicFileNumR = PiercePicFileNum;//需要显示在衣服外右部分的文件编号
-			let PierceL = pierceId >= 5 && $dataArmors[pierceId].meta["CorrectL"] && $dataArmors[pierceId].meta["CorrectR"] ? $dataArmors[pierceId].meta.CorrectL[StandPoseID - 1] : -1;//左乳钉，大于0代表有超出身体
-			let PierceR = pierceId >= 5 && $dataArmors[pierceId].meta["CorrectL"] && $dataArmors[pierceId].meta["CorrectR"] ? $dataArmors[pierceId].meta.CorrectR[StandPoseID - 1] : -1;//右乳钉，大于0代表有超出身体
+			let PierceL = -1//左乳钉，大于0代表有超出身体
+			let PierceR = -1;//右乳钉，大于0代表有超出身体
 
 
 			//获取身上装备的特殊属性值
@@ -122,7 +122,8 @@
 			let SemenMouth = $gameVariables.value(943)//嘴部部分
 
 			//身体颜色部分
-			let bodyTone = [$gameVariables.value(4846) * 0.5, 0, $gameVariables.value(4846) * 0.3, 0];//存储身体的色调变化
+			let staining = $gameVariables.value(4846)>=100 ? 100 : $gameVariables.value(4846)
+			let bodyTone = [staining * 0.5, 0, staining * 0.3, 0];//存储身体的色调变化
 
 			//其他变量设置
 
@@ -213,7 +214,7 @@
 			if (user.isStateAffected(322)) Mark2 = "10";
 			//大淫纹
 			if (user.isStateAffected(407)) {
-				Mark1 = "14";
+				Mark1 = "16";
 			}
 
 
@@ -335,6 +336,8 @@
 			$gameSwitches._data[2922] = NippleL >= 1 ? true : false;
 			$gameSwitches._data[2923] = NippleR >= 1 ? true : false;
 
+			PierceL = pierceId >= 5 && $dataArmors[pierceId].meta["CorrectL"] && $dataArmors[pierceId].meta["CorrectR"] ? $dataArmors[pierceId].meta.CorrectL[StandPoseID - 1] : -1;//左乳钉，大于0代表有超出身体
+			PierceR = pierceId >= 5 && $dataArmors[pierceId].meta["CorrectL"] && $dataArmors[pierceId].meta["CorrectR"] ? $dataArmors[pierceId].meta.CorrectR[StandPoseID - 1] : -1;//右乳钉，大于0代表有超出身体
 			//处理吊坠
 			if (PierceR + PierceL >= 0) {
 				PiercePicFileNum += 'l';
@@ -420,7 +423,6 @@
 			}
 			//身体色调
 			if ($gameScreen.picture(stand_base) && bodyTone != $gameScreen.picture(stand_base)._tone) $gameScreen.picture(stand_base).tint(bodyTone, 0);
-
 			//性器变黑
 			if (ConfigManager.noBlacken) { $gameScreen.erasePicture(stand_vb); $gameScreen.erasePicture(stand_bb); }
 			else {
@@ -432,7 +434,7 @@
 				FileName = 'organ/' + StandPoseID + 'b';
 				if ($gameScreen.picture(stand_bb) && $gameScreen.picture(stand_bb)._name == FileName) {
 				} else {
-					$gameScreen.showPicture(stand_bb, FileName, origin, Stand1X, Stand1Y, scale, scale, (($gameVariables.value(1103) + $gameVariables.value(1074) * 0.5 + $gameVariables.value(1072)) / 20 * 255).clamp(0, 255), 0);
+			$gameScreen.showPicture(stand_bb,FileName,origin,Stand1X,Stand1Y,scale,scale,(($gameVariables.value(1103)+$gameVariables.value(1074)*0.25+$gameVariables.value(1072)*0.5)/20*255).clamp(0,255),0);
 				}
 			}
 

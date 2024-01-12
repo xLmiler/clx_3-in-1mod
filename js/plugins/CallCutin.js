@@ -53,7 +53,7 @@
       var Cutin1Y = 256
 
       var user = $gameActors.actor(1);
-
+      var StandPoseID = 1;//不能删，其实是调用了的
       //着用中衣装パラメータ
       var EqNum = 0;
       var Nipple = true;
@@ -813,7 +813,7 @@
         var bitmap = ImageManager.loadPicture(FILENAME);
         var s = new Sprite(bitmap);
         SceneManager._scene.total.addChild(s);
-        s.opacity = (($gameVariables.value(1103) + $gameVariables.value(1074) * 0.5 + $gameVariables.value(1072)) / 20 * 255).clamp(0, 255);
+  s.opacity = (($gameVariables.value(1103)+$gameVariables.value(1074)*0.25+$gameVariables.value(1072)*0.5)/20*255).clamp(0,255);
         SceneManager._scene.total.Blacken = s;
       }
 
